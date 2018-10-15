@@ -1,3 +1,8 @@
+v1.4 - August 8th, 2015
+o Added bbcode form where "frameborder" is the only parameter taken.
+o Added additional URL validation to make sure bbcode isn't misused.
+o Modified parameters so that height parameter is now optional.
+
 v1.3 - August 7th, 2015
 o Added responsiveness to the Instagram iframe code.
 o Replaced Instagram bbcode button images with one supplied by 420Connect.co.uk

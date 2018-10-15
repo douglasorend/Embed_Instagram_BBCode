@@ -21,17 +21,29 @@ function BBCode_Instagram_LoadTheme()
 
 function BBCode_Instagram(&$bbc)
 {
-	// Format: [instagram width=x height=x]{instagram ID}[/instagram]
+	// Format: [instagram width=x height=x frameborder=x]{instagram ID}[/instagram]
 	$bbc[] = array(
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'parameters' => array(
 			'width' => array('match' => '(\d+)'),
-			'height' => array('match' => '(\d+)'),
+			'height' => array('optional' => true, 'match' => '(\d+)'),
 			'frameborder' => array('optional' => true, 'match' => '(\d+)'),
 		),
 		'validate' => 'BBCode_Instagram_Validate',
 		'content' => '{width}|{height}|{frameborder}',
+		'disabled_content' => '$1',
+	);
+
+	// Format: [instagram width=x height=x frameborder=x]{instagram ID}[/instagram]
+	$bbc[] = array(
+		'tag' => 'instagram',
+		'type' => 'unparsed_content',
+		'parameters' => array(
+			'frameborder' => array('match' => '(\d+)'),
+		),
+		'validate' => 'BBCode_Instagram_Validate',
+		'content' => '0|0|{frameborder}',
 		'disabled_content' => '$1',
 	);
 
@@ -58,14 +70,23 @@ function BBCode_Instagram_Button(&$buttons)
 
 function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 {
+	global $txt;
+	
 	if (empty($data))
-		return ($tag['content'] = '');
+		return $txt['instagram_no_post_id'];
+	$data = strtr(trim($data), array('<br />' => ''));
+	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
+		$data = 'http://' . $data;
+	if (strlen($data) !== 10)
+	{
+		$pattern = '#(http|https)://(|(.+?).)instagram.com/p/((.+?){10})(|(\?|/)(.+?))#i';
+		if (!preg_match($pattern, $data, $parts))
+			return $txt['instagram_no_post_id'];
+		$data = $parts[4];
+	}
 	list($width, $height, $frameborder) = explode('|', $tag['content']);
-	if (strlen($data) == 10)
-		$tag['content'] = '<iframe src="https://instagram.com/p/' . $data .'/embed/" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe>';
-	else
-		$tag['content'] = '<iframe src="' . $data . '/embed" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe>';
-	$tag['content'] = '<div' . ((empty($width) || empty($height)) ? '' : ' style="max-width: ' . $width . 'px; max-height: ' . $height . 'px;"') . '><div class="instagram-wrapper">' . $tag['content'] . '</div></div>';
+	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
+		'<iframe src="https://instagram.com/p/' . $data .'/embed/" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe></div></div>';
 }
 
 ?>

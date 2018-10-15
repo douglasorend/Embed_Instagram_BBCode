@@ -4,15 +4,12 @@
 <id>Dougiefresh:Instagram</id>
 <name>Embed Instagram BBCode</name>
 <version>1.4</version>
-
-<file name="$sourcedir/Post.php">
+	
+<file name="$languagedir/index.english.php">
 	<operation>
-		<search position="replace"><![CDATA['<img>]]></search>
-		<add><![CDATA['<img><iframe>]]></add>
-	</operation>
-	<operation>
-		<search position="replace"><![CDATA['<img>]]></search>
-		<add><![CDATA['<img><iframe>]]></add>
+		<search position="end" />
+		<add><![CDATA[
+$txt['instagram_no_post_id'] = 'No Instagram post ID supplied.';]]></add>
 	</operation>
 </file>
 </modification>
