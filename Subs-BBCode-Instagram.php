@@ -101,7 +101,7 @@ function BBCode_Instagram_Settings(&$config_vars)
 	$config_vars[] = array('int', 'instagram_default_height');
 }
 
-function BBCode_Instagram_Embed(&$message)
+function BBCode_Instagram_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/(?:p/)?[A-Za-z0-9_\-]+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, '[instagram]$0[/instagram]', $message);

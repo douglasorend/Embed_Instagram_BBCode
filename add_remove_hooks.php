@@ -25,6 +25,8 @@ $hook_functions = array(
 	'integrate_bbc_codes' => 'BBCode_Instagram',
 	'integrate_bbc_buttons' => 'BBCode_Instagram_Button',
 	'integrate_general_mod_settings' => 'BBCode_Instagram_Settings',
+// SMF 2.1+ Hooks below this line:
+	'integrate_pre_parsebbc' => 'BBCode_Instagram_Embed',
 );
 
 // Adding or removing them?
