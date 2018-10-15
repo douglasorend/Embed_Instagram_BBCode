@@ -106,6 +106,8 @@ function BBCode_Instagram_Embed(&$message)
 	$message = preg_replace($pattern, '[instagram]$1://$2instagram.com/p/$4$6[/instagram]', $message);
 	$pattern = '#\[instagram(|.+?)\]\[instagram\](.+?)\[/instagram\]\[/instagram\]#i';
 	$message = preg_replace($pattern, '[instagram$1]$2[/instagram]', $message);
+	$pattern = '#\[code(|.+?)\](.+?)\[instagram\](.+?)\[/instagram\](.+?)\[/code\]#i';
+	$message = preg_replace($pattern, '[code$1]$4$5[/instagram]', $message);
 }
 
 ?>
