@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:Instagram</id>
+<name>Embed Instagram BBCode</name>
+<version>1.15</version>
+	
+<file name="$languagedir/index.spanish_es.php" error="skip">
+	<operation>
+		<search position="final" />
+		<add><![CDATA[
+$txt['instagram_no_post_id'] = 'No es una ID de Instagram soportada.';]]></add>
+	</operation>
+</file>
+<file name="$languagedir/ManageSettings.spanish_es.php" error="skip">
+	<operation>
+		<search position="end" />
+		<add><![CDATA[
+$txt['instagram_default_width'] = 'Anchura por defecto usada para el BBCode Instagram cuando no se especifica<div class="smalltext">Usa <strong>0</strong> para usar una interfaz responsive del vídeo</div>';
+$txt['instagram_default_height'] = 'Altura por defecto usada para el BBCode Instagram cuando no se especifica<div class="smalltext">Usa <strong>0</strong> para usar una interfaz responsive del vídeo</div>';
+]]></add>
+	</operation>
+</file>
+</modification>
