@@ -1,3 +1,7 @@
+v1.13 - November 15th, 2015
+o Modified validation pattern to recognize URLs without the "/p" part as valid.
+o Modified auto-embed regex pattern to require the "http" or "https" part of the URL.
+
 v1.12 - October 17th, 2015
 o Fixed auto-embedding code so that it embeds the URL if no tags are around it.
 
