@@ -113,6 +113,8 @@ function BBCode_Instagram_Settings(&$config_vars)
 
 function BBCode_Instagram_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
+	if ($message === false)
+		return;
 	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$0[/url]' : '[instagram]$0[/instagram]');
 	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/p\/?[A-Za-z0-9_\-]+(\/embed|\/embed\/captioned|)\/\?taken\-by=[A-Za-z0-9_\-]+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
