@@ -24,6 +24,7 @@ $hook_functions = array(
 	'integrate_load_theme' => 'BBCode_Instagram_LoadTheme',
 	'integrate_bbc_codes' => 'BBCode_Instagram',
 	'integrate_bbc_buttons' => 'BBCode_Instagram_Button',
+	'integrate_general_mod_settings' => 'BBCode_Instagram_Settings',
 );
 
 // Adding or removing them?

@@ -12,6 +12,12 @@
 if (!defined('SMF')) 
 	die('Hacking attempt...');
 
+function BBCode_Instagram_Settings(&$config_vars)
+{
+	$config_vars[] = array('int', 'instagram_default_width');
+	$config_vars[] = array('int', 'instagram_default_height');
+}
+
 function BBCode_Instagram_LoadTheme()
 {
 	global $context, $settings;
@@ -71,7 +77,7 @@ function BBCode_Instagram_Button(&$buttons)
 
 function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 {
-	global $txt;
+	global $txt, $modSettings;
 	
 	if (empty($data))
 		return $txt['instagram_no_post_id'];
@@ -86,6 +92,10 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 		$data = $parts[4];
 	}
 	list($width, $height, $frameborder) = explode('|', $tag['content']);
+	if (empty($width) && !empty($modSettings['instagram_default_width']))
+		$width = $modSettings['instagram_default_width'];
+	if (empty($height) && !empty($modSettings['instagram_default_height']))
+		$height = $modSettings['instagram_default_height'];
 	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
 		'<iframe src="https://instagram.com/p/' . $data .'/embed/" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe></div></div>';
 }
