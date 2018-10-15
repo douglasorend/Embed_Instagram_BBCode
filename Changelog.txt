@@ -1,3 +1,6 @@
+v1.11 - October 2nd, 2015
+o Rewrote auto-embedding code to deal with line-breaks and duplicate closing brackets.
+
 v1.10 - September 21st, 2015
 o Fixed auto-embedding issue where URLs inside code tags where auto-linked.
 
