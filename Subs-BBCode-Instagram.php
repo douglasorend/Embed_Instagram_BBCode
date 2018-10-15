@@ -2,11 +2,15 @@
 /**********************************************************************************
 * Subs-BBCode-Instagram.php
 ***********************************************************************************
+* This mod is licensed under the 2-clause BSD License, which can be found here:
+*	http://opensource.org/licenses/BSD-2-Clause
 ***********************************************************************************
 * This program is distributed in the hope that it is and will be useful, but      *
 * WITHOUT ANY WARRANTIES; without even any implied warranty of MERCHANTABILITY    *
 * or FITNESS FOR A PARTICULAR PURPOSE.                                            *
 **********************************************************************************/
+if (!defined('SMF')) 
+	die('Hacking attempt...');
 
 function BBCode_Instagram(&$bbc)
 {
@@ -15,10 +19,11 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'parameters' => array(
-			'width' => array('value' => ' width="$1"', 'match' => '(\d+)'),
-			'height' => array('value' => ' height="$1"', 'match' => '(\d+)'),
+			'width' => array('match' => '(\d+)'),
+			'height' => array('match' => '(\d+)'),
 		),
-		'content' => '<iframe src="https://instagram.com/p/$1/embed/"{width}{height} frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+		'validate' => 'BBCode_Instagram_Validate',
+		'content' => '{width}|{height}',
 		'disabled_content' => '$1',
 	);
 
@@ -26,7 +31,8 @@ function BBCode_Instagram(&$bbc)
 	$bbc[] = array(
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
-		'content' => '<iframe src="https://instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe>',
+		'validate' => 'BBCode_Instagram_Validate',
+		'content' => '612|710',
 		'disabled_content' => '$1',
 	);
 }
@@ -40,6 +46,17 @@ function BBCode_Instagram_Button(&$buttons)
 		'before' => '[instagram]',
 		'after' => '[/instagram]',
 	);
+}
+
+function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
+{
+	if (empty($data))
+		return ($tag['content'] = '');
+	list($width, $height) = explode('|', $tag['content']);
+	if (strlen($data) == 10)
+		$tag['content'] = '<iframe src="https://instagram.com/p/' . $data .'/embed/" width="' . $width . '" height="'. $height . '" frameborder="0" scrolling="no" allowtransparency="true"></iframe>';
+	else
+		$tag['content'] = '<iframe src="' . $data . '/embed" width="' . $width . '" height="'. $height . '" frameborder="0" scrolling="no" allowtransparency="true"></iframe>';
 }
 
 ?>

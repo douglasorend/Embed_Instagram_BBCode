@@ -25,7 +25,7 @@
 		<readme parsebbc="true">readme.txt</readme>
 		<code>add_remove_hooks.php</code>
 		<require-file name="Subs-BBCode-Instagram.php" destination="$sourcedir" />
-		<require-file name="Instagram.png" destination="$imagesdir/bbc" />
+		<require-file name="instagram.png" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.1 Beta 1">
 		<code>add_remove_hooks.php</code>

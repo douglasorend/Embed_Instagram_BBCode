@@ -1,31 +1,27 @@
 [hr]
-[center][color=red][size=16pt][b]ESPN VIDEO BBCODE v1.0.1[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4057]Link to Mod[/url]
+[center][color=red][size=16pt][b]EMBED INSTAGRAM BBCODE v1.0[/b][/size][/color]
+[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4059]Link to Mod[/url]
 [/center]
 [hr]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
-This modification adds a BBCodes to watch ESPN videos.
+This modification adds a BBCode to view Instagram videos and pictures.
 
-The two BBCodes takes these forms:
+The BBCode takes these forms:
 [code]
-[ESPN]{ESPN video ID}[/ESPN]
-[ESPN width=x height=x]{ESPN video ID}[/ESPN]
-[ESPN]{ESPN video URL}[/ESPN]
-[ESPN width=x height=x]{ESPN video URL}[/ESPN]
-[ESPN]{ESPN embed code}[/ESPN]
-[ESPN width=x height=x]{ESPN embed code}[/ESPN]
+[instagram]{instagram ID}[/instagram]
+[instagram width=x height=x]{instagram ID}[/instagram]
 [/code]
-where [b]{ESPN embed code}[/b] is the embed code given from the ESPN.com website, and [b]{ESPN video ID}[/b] is the number that starts with [b]externalId=espn:[/b].
+where [b]{instagram ID}[/b] is the [b]21wUvaPwwB[/b] part of the [b]https://instagram.com/p/21wUvaPwwB[/b] URL.
 
 [color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
 There are no admin settings to this mod.  To disable, you must uninstall this mod.
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.9, but should work on SMF 2.1 Beta 1, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
+This mod was tested on SMF 2.0.10, but should work on SMF 2.1 Beta 1, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=514.msg780#msg780]XPtsp.com[/url].
+The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=544.msg817#msg817]XPtsp.com[/url].
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
 Copyright (c) 2015, Douglas Orend

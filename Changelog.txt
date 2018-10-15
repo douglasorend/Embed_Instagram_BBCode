@@ -1,0 +1,7 @@
+v1.1 - June 29th, 2015
+o Fixed errors when nothing was placed between the tags.
+o Modified code so that nothing is output when nothing is placed between the tags.
+o Modified code to allow full path to the Instagram post instead of just the twitter post ID.
+
+v1.0 - June 5th, 2015
+o Initial Public Release
