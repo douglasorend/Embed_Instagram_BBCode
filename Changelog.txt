@@ -1,3 +1,7 @@
+v1.7 - August 15th, 2015
+o Fixed issue where 10 character Instagram post ID wasn't displayed properly.
+o Fixed CSS issue where instagram post was partly displayed within the specified area.
+
 v1.6 - August 12th, 2015
 o Added settings to allow admin to set default size of the Instagram video.
 o Altered code to use new default size settings when width and/or height isn't specified.

@@ -80,15 +80,15 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	global $txt, $modSettings;
 	
 	if (empty($data))
-		return $txt['instagram_no_post_id'];
+		return ($tag['content'] = $txt['instagram_no_post_id']);
 	$data = strtr(trim($data), array('<br />' => ''));
-	if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
-		$data = 'http://' . $data;
 	if (strlen($data) !== 10)
 	{
+		if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
+			$data = 'http://' . $data;
 		$pattern = '#(http|https)://(|(.+?).)instagram.com/p/((.+?){10})(|(\?|/)(.+?))#i';
 		if (!preg_match($pattern, $data, $parts))
-			return $txt['instagram_no_post_id'];
+			return ($tag['content'] = $txt['instagram_no_post_id']);
 		$data = $parts[4];
 	}
 	list($width, $height, $frameborder) = explode('|', $tag['content']);
