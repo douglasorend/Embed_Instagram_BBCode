@@ -1,4 +1,4 @@
-7<?php
+<?php
 /**********************************************************************************
 * Subs-BBCode-Instagram.php
 ***********************************************************************************
@@ -19,8 +19,8 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'parameters' => array(
-			'width' => array('match' => '(\d+)'),
-			'height' => array('optional' => true, 'match' => '(\d+)'),
+			'width' => array('match' => '(\d+[\%|px|])'),
+			'height' => array('optional' => true, 'match' => '(\d+[\%|px|])'),
 			'frameborder' => array('optional' => true, 'match' => '(\d+)'),
 			'captioned' => array('optional' => true, 'match' => '(y|n|yes|no)'),
 		),
@@ -34,10 +34,12 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'parameters' => array(
-			'frameborder' => array('match' => '(\d+)'),
+			'height' => array('optional' => true, 'match' => '(\d+[\%|px|])'),
+			'frameborder' => array('optional' => true, 'match' => '(\d+)'),
+			'captioned' => array('optional' => true, 'match' => '(y|n|yes|no)'),
 		),
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '0|0|{frameborder}|',
+		'content' => '0|{height}|{frameborder}|{captioned}',
 		'disabled_content' => '$1',
 	);
 
@@ -46,7 +48,7 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '0|0|0|',
+		'content' => '0|0|0|0',
 		'disabled_content' => '$1',
 	);
 }
@@ -67,6 +69,7 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	global $txt, $modSettings;
 	
 	// Set up for a run through the bbcode:
+	list($width, $height, $frameborder, $captioned) = explode('|', $tag['content']);
 	$tag['content'] = $txt['instagram_no_post_id'];
 	if (empty($data))
 		return;
@@ -83,17 +86,23 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	}
 	
 	// Build the Instagram html code:
-	list($width, $height, $frameborder, $captioned) = explode('|', $tag['content']);
 	if (empty($width) && !empty($modSettings['instagram_default_width']))
 		$width = $modSettings['instagram_default_width'];
 	if (empty($height) && !empty($modSettings['instagram_default_height']))
 		$height = $modSettings['instagram_default_height'];
+	if (!empty($width) && strpos($width, '%') === false)
+		$width .= 'px';
+	if (!empty($height) && strpos($height, '%') === false)
+		$height .= 'px';
 	$captioned = empty($captioned) || $captioned == 'y' || $captioned == 'yes';
-	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
-		'<iframe src="https://instagram.com/p/' . $data .'/embed' . ($captioned ? '/captioned/' : '') . '" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
+	$style = 'style="' . (empty($width) ? '' : 'max-width: ' . $width . '; ') . (empty($height) ? '' : 'max-height: ' . $height . ';');
+	$tag['content'] = '<div ' . $style . '">' .
+		'<div class="instagram-wrapper" ' . str_replace('max-height', 'padding-bottom', $style) . '">' .
+			'<iframe src="https://instagram.com/p/' . $data .'/embed' . ($captioned ? '/captioned/' : '') . '" scrolling="no" ' . (!empty($frameborder) ? ' frameborder="' . $frameborder . '" ' : '') . $style . '"></iframe>' .
+		'</div></div>';
 
 	// Add the Instagram URL if admin says so:
-	if (!empty($modSettings['tumblr_include_link']))
+	if (!empty($modSettings['instagram_include_link']))
 		$tag['content'] .= '<br /><a href="https://instagram.com/p/' . $data . '">https://instagram.com/p/' . $data . '</a>';
 }
 
@@ -109,6 +118,7 @@ function BBCode_Instagram_Settings(&$config_vars)
 {
 	$config_vars[] = array('int', 'instagram_default_width');
 	$config_vars[] = array('int', 'instagram_default_height');
+	$config_vars[] = array('check', 'instagram_include_link');
 }
 
 function BBCode_Instagram_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)

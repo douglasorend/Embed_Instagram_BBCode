@@ -1,3 +1,9 @@
+v2.0 - March 15th, 2018
+o Added [b]height[/b] and [b]captioned[/b] to bbcode without requiring [b]width[/b].
+o Added ability to use percentages in [b]width[/b] and [b]height[/b].
+o Adjusted HTML building code to add appropriate CSS width and height styling.
+o Added option to include Instagram link below embedded Instagram post.
+
 v1.24 - March 4th, 2018
 o Fixed an issue that prevents BBC manager from showing bbcodes.
 
