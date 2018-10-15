@@ -111,7 +111,6 @@ function BBCode_Instagram_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 	$message = preg_replace($pattern, $replace, $message);
 	if (strpos($cache_id, 'sig') !== false)
 		$message = preg_replace('#\[instagram.*\](.*)\[\/instagram\]#i', '[url]$1[/url]', $message);
-	if (strpos($cache_id, 'sig') !== false) { echo $message; exit; }
 }
 
 ?>
