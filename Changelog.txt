@@ -1,4 +1,7 @@
-v2.0 - October 3rd, 2016
+v1.21 - December 25th, 2016
+o Fixed the embed code so that the Instagram post shows up in forum posts again.
+
+v1.20 - October 3rd, 2016
 o Removed some leftover debugging code for signatures.
 
 v1.19 - May 13th, 2016

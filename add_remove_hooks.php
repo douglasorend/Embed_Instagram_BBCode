@@ -20,7 +20,7 @@ if (SMF == 'SSI')
 	
 // Define the hooks
 $hook_functions = array(
-	'integrate_pre_include' => '$sourcedir/Subs-BBCode-Instagram.php',
+	'integrate_pre_include' => '$sourcedir/Subs-Instagram.php',
 	'integrate_load_theme' => 'BBCode_Instagram_LoadTheme',
 	'integrate_bbc_codes' => 'BBCode_Instagram',
 	'integrate_bbc_buttons' => 'BBCode_Instagram_Button',

@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Instagram</id>
 	<name>Embed Instagram BBCode</name>
 	<type>modification</type>
-	<version>1.20</version>
+	<version>1.21</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -13,8 +13,8 @@
 		<modification>install.xml</modification>
 		<modification>language_english.xml</modification>
 		<modification>language_spanish_es.xml</modification>
-		<require-file name="Subs-BBCode-Instagram.php" destination="$sourcedir" />
-		<require-file name="BBCode-Instagram.css" destination="$themedir/css" />
+		<require-file name="Subs-Instagram.php" destination="$sourcedir" />
+		<require-file name="instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.gif" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
@@ -22,8 +22,8 @@
 		<modification reverse="true">install.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_spanish_es.xml</modification>
-		<remove-file name="$sourcedir/Subs-BBCode-Instagram.php" />		
-		<remove-file name="$themedir/css/BBCode-Instagram.css" />
+		<remove-file name="$sourcedir/Subs-Instagram.php" />		
+		<remove-file name="$themedir/css/instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.gif" />
 	</uninstall>
 
@@ -32,16 +32,16 @@
 		<code>add_remove_hooks.php</code>
 		<modification>language_english.xml</modification>
 		<modification>language_spanish_es.xml</modification>
-		<require-file name="Subs-BBCode-Instagram.php" destination="$sourcedir" />
-		<require-file name="BBCode-Instagram.css" destination="$themedir/css" />
+		<require-file name="Subs-Instagram.php" destination="$sourcedir" />
+		<require-file name="instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.png" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.1 Beta 2">
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_spanish_es.xml</modification>
-		<remove-file name="$sourcedir/Subs-BBCode-Instagram.php" />		
-		<remove-file name="$themedir/css/BBCode-Instagram.css" />
+		<remove-file name="$sourcedir/Subs-Instagram.php" />		
+		<remove-file name="$themedir/css/instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.png" />
 	</uninstall>
 </package-info>
