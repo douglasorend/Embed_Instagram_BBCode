@@ -22,9 +22,10 @@ function BBCode_Instagram(&$bbc)
 			'width' => array('match' => '(\d+)'),
 			'height' => array('optional' => true, 'match' => '(\d+)'),
 			'frameborder' => array('optional' => true, 'match' => '(\d+)'),
+			'captioned' => array('optional' => true, 'match' => '(y|n|yes|no)'),
 		),
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '{width}|{height}|{frameborder}',
+		'content' => '{width}|{height}|{frameborder}|{captioned}',
 		'disabled_content' => '$1',
 	);
 
@@ -36,7 +37,7 @@ function BBCode_Instagram(&$bbc)
 			'frameborder' => array('match' => '(\d+)'),
 		),
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '0|0|{frameborder}',
+		'content' => '0|0|{frameborder}|',
 		'disabled_content' => '$1',
 	);
 
@@ -45,7 +46,7 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '0|0|0',
+		'content' => '0|0|0|',
 		'disabled_content' => '$1',
 	);
 }
@@ -72,18 +73,19 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	{
 		if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 			$data = 'http://' . $data;
-		$pattern = '#(http|https)://(|(.+?).)instagram.com/(?:p/)?([A-Za-z0-9_\-]+)#i';
+		$pattern = '#(http|https):\/\/(|(.+?).)instagram.com\/p\/([A-Za-z0-9_\-]+)#i';
 		if (!preg_match($pattern, $data, $parts))
 			return ($tag['content'] = $txt['instagram_no_post_id']);
-		$data = $parts[4];
+		$data = $parts[4] . $parts[5];
 	}
-	list($width, $height, $frameborder) = explode('|', $tag['content']);
+	list($width, $height, $frameborder, $captioned) = explode('|', $tag['content']);
 	if (empty($width) && !empty($modSettings['instagram_default_width']))
 		$width = $modSettings['instagram_default_width'];
 	if (empty($height) && !empty($modSettings['instagram_default_height']))
 		$height = $modSettings['instagram_default_height'];
+	$captioned = empty($captioned) || $captioned == 'y' || $captioned == 'yes';
 	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
-		'<iframe src="https://instagram.com/p/' . $data .'/embed/" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
+		'<iframe src="https://instagram.com/' . $data .'/embed' . ($captioned ? '/captioned/' : '') . '" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
 }
 
 function BBCode_Instagram_LoadTheme()
@@ -103,12 +105,13 @@ function BBCode_Instagram_Settings(&$config_vars)
 function BBCode_Instagram_Embed(&$message, &$smileys, &$cache_id, &$parse_tags)
 {
 	$replace = (strpos($cache_id, 'sig') !== false ? '[url]$0[/url]' : '[instagram]$0[/instagram]');
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/(?:p/)?[A-Za-z0-9_\-]+\/\?taken\-by=[A-Za-z0-9_\-]+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/p\/?[A-Za-z0-9_\-]+(\/embed|\/embed\/captioned|)\/\?taken\-by=[A-Za-z0-9_\-]+\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
-	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/(?:p/)?[A-Za-z0-9_\-]+\??[/\w\-_\~%@\?;=#}\\\\]?~';
+	$pattern = '~(?<=[\s>\.(;\'"]|^)(https?\:\/\/)(?:www\.)?instagram.com\/p\/[A-Za-z0-9_\-]+(\/embed\/|\/embed\/captioned\/|)\??[/\w\-_\~%@\?;=#}\\\\]?~';
 	$message = preg_replace($pattern, $replace, $message);
 	if (strpos($cache_id, 'sig') !== false)
 		$message = preg_replace('#\[instagram.*\](.*)\[\/instagram\]#i', '[url]$1[/url]', $message);
+	if (strpos($cache_id, 'sig') !== false) { echo $message; exit; }
 }
 
 ?>
