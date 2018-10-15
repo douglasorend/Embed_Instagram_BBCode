@@ -12,20 +12,6 @@
 if (!defined('SMF')) 
 	die('Hacking attempt...');
 
-function BBCode_Instagram_Settings(&$config_vars)
-{
-	$config_vars[] = array('int', 'instagram_default_width');
-	$config_vars[] = array('int', 'instagram_default_height');
-}
-
-function BBCode_Instagram_LoadTheme()
-{
-	global $context, $settings;
-	$context['html_headers'] .= '
-	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Instagram.css" />';
-	$context['allowed_html_tags'][] = '<iframe>';
-}
-
 function BBCode_Instagram(&$bbc)
 {
 	// Format: [instagram width=x height=x frameborder=x]{instagram ID}[/instagram]
@@ -97,7 +83,29 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	if (empty($height) && !empty($modSettings['instagram_default_height']))
 		$height = $modSettings['instagram_default_height'];
 	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
-		'<iframe src="https://instagram.com/p/' . $data .'/embed/" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe></div></div>';
+		'<iframe src="https://instagram.com/p/' . $data .'/embed/" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
+}
+
+function BBCode_Instagram_LoadTheme()
+{
+	global $context, $settings;
+	$context['html_headers'] .= '
+	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Instagram.css" />';
+	$context['allowed_html_tags'][] = '<iframe>';
+}
+
+function BBCode_Instagram_Settings(&$config_vars)
+{
+	$config_vars[] = array('int', 'instagram_default_width');
+	$config_vars[] = array('int', 'instagram_default_height');
+}
+
+function BBCode_Instagram_Embed(&$message)
+{
+	$pattern = '#(http|https)://(|(.+?).)instagram.com/p/((.+?){10})(|(\?|/)(.+?))#i';
+	$message = preg_replace($pattern, '[instagram]$1://$2instagram.com/p/$4$6[/instagram]', $message);
+	$pattern = '#\[instagram(|.+?)\]\[instagram\](.+?)\[/instagram\]\[/instagram\]#i';
+	$message = preg_replace($pattern, '[instagram$1]$2[/instagram]', $message);
 }
 
 ?>

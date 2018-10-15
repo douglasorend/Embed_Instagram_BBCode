@@ -1,3 +1,7 @@
+v1.8 - August 27th, 2015
+o Added ability to auto-embed Instagram URLs to the mod.
+o Adjusted CSS file "padding-bottom" property from 100% to 112% to show entire embed.
+
 v1.7 - August 15th, 2015
 o Fixed issue where 10 character Instagram post ID wasn't displayed properly.
 o Fixed CSS issue where instagram post was partly displayed within the specified area.
