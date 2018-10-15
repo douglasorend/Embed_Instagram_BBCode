@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:Instagram</id>
 <name>Embed Instagram BBCode</name>
-<version>1.8</version>
+<version>1.9</version>
 
 <file name="$sourcedir/Post.php">
 	<operation>
@@ -17,7 +17,7 @@
 </file>
 <file name="$sourcedir/Subs.php">
 	<operation>
-		<search position="after"><![CDATA[// Sift out the bbc for a performance improvement.]]></search>
+		<search position="after"><![CDATA[// The non-breaking-space looks a bit different each time.]]></search>
 		<add><![CDATA[// Embed Instagram URLs in the instagram bbcode tags:
 	BBCode_Instagram_Embed($message);
 
