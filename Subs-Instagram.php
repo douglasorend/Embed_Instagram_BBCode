@@ -1,4 +1,4 @@
-<?php
+7<?php
 /**********************************************************************************
 * Subs-BBCode-Instagram.php
 ***********************************************************************************
@@ -66,18 +66,23 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 {
 	global $txt, $modSettings;
 	
+	// Set up for a run through the bbcode:
+	$tag['content'] = $txt['instagram_no_post_id'];
 	if (empty($data))
-		return ($tag['content'] = $txt['instagram_no_post_id']);
+		return;
 	$data = strtr(trim($data), array('<br />' => ''));
+
+	// Is this a Tumblr post URL?  If not, abort:
 	if (strlen($data) > 11)
 	{
 		if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 			$data = 'http://' . $data;
-		$pattern = '#(http|https):\/\/(|(.+?).)instagram.com\/p\/([A-Za-z0-9_\-]+)#i';
-		if (!preg_match($pattern, $data, $parts))
-			return ($tag['content'] = $txt['instagram_no_post_id']);
+		if (!preg_match('#(http|https):\/\/(|(.+?).)instagram.com\/p\/([A-Za-z0-9_\-]+)#i', $data, $parts))
+			return;
 		$data = $parts[4] . (isset($parts[5]) ? $parts[5] : '');
 	}
+	
+	// Build the Instagram html code:
 	list($width, $height, $frameborder, $captioned) = explode('|', $tag['content']);
 	if (empty($width) && !empty($modSettings['instagram_default_width']))
 		$width = $modSettings['instagram_default_width'];
@@ -86,6 +91,10 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	$captioned = empty($captioned) || $captioned == 'y' || $captioned == 'yes';
 	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
 		'<iframe src="https://instagram.com/p/' . $data .'/embed' . ($captioned ? '/captioned/' : '') . '" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
+
+	// Add the Instagram URL if admin says so:
+	if (!empty($modSettings['tumblr_include_link']))
+		$tag['content'] .= '<br /><a href="https://instagram.com/p/' . $data . '">https://instagram.com/p/' . $data . '</a>';
 }
 
 function BBCode_Instagram_LoadTheme()
