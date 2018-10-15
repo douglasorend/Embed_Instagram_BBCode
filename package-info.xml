@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Instagram</id>
 	<name>Embed Instagram BBCode</name>
 	<type>modification</type>
-	<version>1.4</version>
+	<version>1.5</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -25,7 +25,7 @@
 		<remove-file name="$imagesdir/bbc/instagram.gif" />
 	</uninstall>
 
-	<install for="2.1 Beta 1">
+	<install for="2.1 Beta 2">
 		<readme parsebbc="true">readme.txt</readme>
 		<code>add_remove_hooks.php</code>
 		<modification>language_english.xml</modification>
@@ -33,7 +33,7 @@
 		<require-file name="BBCode-Instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.png" destination="$imagesdir/bbc" />
 	</install>
-	<uninstall for="2.1 Beta 1">
+	<uninstall for="2.1 Beta 2">
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">language_english.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Instagram.php" />		

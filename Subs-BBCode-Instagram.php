@@ -17,6 +17,7 @@ function BBCode_Instagram_LoadTheme()
 	global $context, $settings;
 	$context['html_headers'] .= '
 	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Instagram.css" />';
+	$context['allowed_html_tags'][] = '<iframe>';
 }
 
 function BBCode_Instagram(&$bbc)

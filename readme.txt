@@ -1,5 +1,5 @@
 [hr]
-[center][color=red][size=16pt][b]EMBED INSTAGRAM BBCODE v1.4[/b][/size][/color]
+[center][color=red][size=16pt][b]EMBED INSTAGRAM BBCODE v1.5[/b][/size][/color]
 [url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4059]Link to Mod[/url]
 [/center]
 [hr]
@@ -18,7 +18,7 @@ where [b]{instagram ID}[/b] is the [b]21wUvaPwwB[/b] part of the [b]https://inst
 There are no admin settings to this mod.  To disable, you must uninstall this mod.
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.10, but should work on SMF 2.1 Beta 1, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
+This mod was tested on SMF 2.0.10, but should work on SMF 2.1 Beta 2, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=544.msg817#msg817]XPtsp.com[/url].
