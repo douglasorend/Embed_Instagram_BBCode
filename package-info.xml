@@ -5,7 +5,7 @@
 	<id>Dougiefresh:Instagram</id>
 	<name>Embed Instagram BBCode</name>
 	<type>modification</type>
-	<version>1.22</version>
+	<version>1.23</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
@@ -13,6 +13,7 @@
 		<modification>install.xml</modification>
 		<modification>language_english.xml</modification>
 		<modification>language_spanish_es.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-Instagram.php" destination="$sourcedir" />
 		<require-file name="instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.gif" destination="$imagesdir/bbc" />
@@ -22,6 +23,7 @@
 		<modification reverse="true">install.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_spanish_es.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-Instagram.php" />		
 		<remove-file name="$themedir/css/instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.gif" />
@@ -32,6 +34,7 @@
 		<code>add_remove_hooks.php</code>
 		<modification>language_english.xml</modification>
 		<modification>language_spanish_es.xml</modification>
+		<modification>language_spanish_latin.xml</modification>
 		<require-file name="Subs-Instagram.php" destination="$sourcedir" />
 		<require-file name="instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.png" destination="$imagesdir/bbc" />
@@ -40,6 +43,7 @@
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">language_english.xml</modification>
 		<modification reverse="true">language_spanish_es.xml</modification>
+		<modification reverse="true">language_spanish_latin.xml</modification>
 		<remove-file name="$sourcedir/Subs-Instagram.php" />		
 		<remove-file name="$themedir/css/instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.png" />
