@@ -1,3 +1,7 @@
+v1.3 - August 7th, 2015
+o Added responsiveness to the Instagram iframe code.
+o Replaced Instagram bbcode button images with one supplied by 420Connect.co.uk
+
 v1.2 - July 27th, 2015
 o Replaced Instagram bbcode button images with better quality ones.
 

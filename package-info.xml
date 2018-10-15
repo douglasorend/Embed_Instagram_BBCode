@@ -5,19 +5,21 @@
 	<id>Dougiefresh:Instagram</id>
 	<name>Embed Instagram BBCode</name>
 	<type>modification</type>
-	<version>1.2</version>
+	<version>1.3</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
 		<code>add_remove_hooks.php</code>
 		<modification>install.xml</modification>
 		<require-file name="Subs-BBCode-Instagram.php" destination="$sourcedir" />
-		<require-file name="Instagram.gif" destination="$imagesdir/bbc" />
+		<require-file name="BBCode-Instagram.css" destination="$themedir/css" />
+		<require-file name="instagram.gif" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.0 - 2.0.99">
 		<code>add_remove_hooks.php</code>
 		<modification reverse="true">install.xml</modification>
 		<remove-file name="$sourcedir/Subs-BBCode-Instagram.php" />		
+		<remove-file name="$themedir/css/BBCode-Instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.gif" />
 	</uninstall>
 
@@ -25,11 +27,13 @@
 		<readme parsebbc="true">readme.txt</readme>
 		<code>add_remove_hooks.php</code>
 		<require-file name="Subs-BBCode-Instagram.php" destination="$sourcedir" />
+		<require-file name="BBCode-Instagram.css" destination="$themedir/css" />
 		<require-file name="instagram.png" destination="$imagesdir/bbc" />
 	</install>
 	<uninstall for="2.1 Beta 1">
 		<code>add_remove_hooks.php</code>
 		<remove-file name="$sourcedir/Subs-BBCode-Instagram.php" />		
+		<remove-file name="$themedir/css/BBCode-Instagram.css" />
 		<remove-file name="$imagesdir/bbc/instagram.png" />
 	</uninstall>
 </package-info>

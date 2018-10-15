@@ -2,12 +2,12 @@
 /**********************************************************************************
 * add_remove_hooks.php                                                            *
 ***********************************************************************************
+* This mod is licensed under the 2-clause BSD License, which can be found here:
+*	http://opensource.org/licenses/BSD-2-Clause
 ***********************************************************************************
 * This program is distributed in the hope that it is and will be useful, but      *
 * WITHOUT ANY WARRANTIES; without even any implied warranty of MERCHANTABILITY    *
 * or FITNESS FOR A PARTICULAR PURPOSE.                                            *
-*                                                                                 *
-* This file is a simplified database installer. It does what it is suppoed to.    *
 **********************************************************************************/
 
 // If we have found SSI.php and we are outside of SMF, then we are running standalone.
@@ -21,6 +21,7 @@ if (SMF == 'SSI')
 // Define the hooks
 $hook_functions = array(
 	'integrate_pre_include' => '$sourcedir/Subs-BBCode-Instagram.php',
+	'integrate_load_theme' => 'BBCode_Instagram_LoadTheme',
 	'integrate_bbc_codes' => 'BBCode_Instagram',
 	'integrate_bbc_buttons' => 'BBCode_Instagram_Button',
 );

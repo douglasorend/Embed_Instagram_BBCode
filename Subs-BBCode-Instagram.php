@@ -12,6 +12,13 @@
 if (!defined('SMF')) 
 	die('Hacking attempt...');
 
+function BBCode_Instagram_LoadTheme()
+{
+	global $context, $settings;
+	$context['html_headers'] .= '
+	<link rel="stylesheet" type="text/css" href="' . $settings['default_theme_url'] . '/css/BBCode-Instagram.css" />';
+}
+
 function BBCode_Instagram(&$bbc)
 {
 	// Format: [instagram width=x height=x]{instagram ID}[/instagram]
@@ -21,9 +28,10 @@ function BBCode_Instagram(&$bbc)
 		'parameters' => array(
 			'width' => array('match' => '(\d+)'),
 			'height' => array('match' => '(\d+)'),
+			'frameborder' => array('optional' => true, 'match' => '(\d+)'),
 		),
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '{width}|{height}',
+		'content' => '{width}|{height}|{frameborder}',
 		'disabled_content' => '$1',
 	);
 
@@ -32,7 +40,7 @@ function BBCode_Instagram(&$bbc)
 		'tag' => 'instagram',
 		'type' => 'unparsed_content',
 		'validate' => 'BBCode_Instagram_Validate',
-		'content' => '612|710',
+		'content' => '0|0|0',
 		'disabled_content' => '$1',
 	);
 }
@@ -52,11 +60,12 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 {
 	if (empty($data))
 		return ($tag['content'] = '');
-	list($width, $height) = explode('|', $tag['content']);
+	list($width, $height, $frameborder) = explode('|', $tag['content']);
 	if (strlen($data) == 10)
-		$tag['content'] = '<iframe src="https://instagram.com/p/' . $data .'/embed/" width="' . $width . '" height="'. $height . '" frameborder="0" scrolling="no" allowtransparency="true"></iframe>';
+		$tag['content'] = '<iframe src="https://instagram.com/p/' . $data .'/embed/" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe>';
 	else
-		$tag['content'] = '<iframe src="' . $data . '/embed" width="' . $width . '" height="'. $height . '" frameborder="0" scrolling="no" allowtransparency="true"></iframe>';
+		$tag['content'] = '<iframe src="' . $data . '/embed" frameborder="' . $frameborder . '" scrolling="no" allowtransparency="true"></iframe>';
+	$tag['content'] = '<div' . ((empty($width) || empty($height)) ? '' : ' style="max-width: ' . $width . 'px; max-height: ' . $height . 'px;"') . '><div class="instagram-wrapper">' . $tag['content'] . '</div></div>';
 }
 
 ?>
