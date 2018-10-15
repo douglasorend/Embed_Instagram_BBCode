@@ -1,35 +1,39 @@
-[hr]
-[center][color=red][size=16pt][b]EMBED INSTAGRAM BBCODE v2.1[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4059]Link to Mod[/url]
-[/center]
-[hr]
+---------
 
-[color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
+# EMBED INSTAGRAM BBCODE v2.1
+
+[**By Dougiefresh**](http://www.simplemachines.org/community/index.php?action=profile;u=253913) -> [Link to Mod](http://custom.simplemachines.org/mods/index.php?mod=4059)
+
+---------
+
+## Introduction
 This modification adds a BBCode to view Instagram videos and pictures.
 
 The BBCode takes these forms:
-[code]
-[instagram]{instagram ID}[/instagram]
-[instagram width=x height=y]{instagram ID}[/instagram]
-[/code]
-where [b]{instagram ID}[/b] is the [b]21wUvaPwwB[/b] part of the [b]https://instagram.com/p/21wUvaPwwB[/b] URL, and [b]x[/b] and [b]y[/b] are parameters supporting both pixel and percentages for width and height (respectively).
+    
+    [instagram]{instagram ID}[/instagram]
+    [instagram width=x height=y]{instagram ID}[/instagram]
+    
+where **{instagram ID}** is the **21wUvaPwwB** part of the **https://instagram.com/p/21wUvaPwwB** URL, and **x** and **y** are parameters supporting both pixel and percentages for width and height (respectively).
 
-[color=blue][b][size=12pt][u]Admin Settings[/u][/size][/b][/color]
-Under [b]Admin[/b] => [b]Modification Settings[/b], there are some new options:
-o [b]Default width of embedded Instagram video[/b]
-o [b]Default height of embedded Instagram video[/b]
-o [b]Include Instagram link beneath?[/b]
+## Admin Settings
+Under **Admin** => **Modification Settings**, there are some new options:
 
-[color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
+- **Default width of embedded Instagram video**
+- **Default height of embedded Instagram video**
+- **Include Instagram link beneath?**
+
+## Compatibility Notes**
 This mod was tested on SMF 2.0.15, but should work on SMF 2.1 Beta 2, as well as SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
-This mod should be installed after [url=https://www.tapatalk.com/download_SimpleMachines.php]Tapatalk mod[/url], if you want to use it with Tapatalk.
+This mod should be installed after [Tapatalk mod](https://www.tapatalk.com/download_SimpleMachines.php), if you want to use it with Tapatalk.
 
-[color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog can be viewed at [url=http://www.xptsp.com/board/free-modifications/embed-instagram-bbcode/?tab=1]XPtsp.com[/url].
+## Changelog
+The changelog can be viewed at [XPtsp.com](http://www.xptsp.com/board/free-modifications/embed-instagram-bbcode/?tab=1).
 
-[color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
+## License
 Copyright (c) 2015 - 2018, Douglas Orend
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
