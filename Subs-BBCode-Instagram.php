@@ -68,11 +68,11 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 	if (empty($data))
 		return ($tag['content'] = $txt['instagram_no_post_id']);
 	$data = strtr(trim($data), array('<br />' => ''));
-	if (strlen($data) !== 10)
+	if (strlen($data) > 11)
 	{
 		if (strpos($data, 'http://') !== 0 && strpos($data, 'https://') !== 0)
 			$data = 'http://' . $data;
-		$pattern = '#(http|https)://(|(.+?).)instagram.com/(?:p/)?((.+?){10})(|(\?|/)(.+?))#i';
+		$pattern = '#(http|https)://(|(.+?).)instagram.com/(?:p/)?([A-Za-z0-9_\-]+)#i';
 		if (!preg_match($pattern, $data, $parts))
 			return ($tag['content'] = $txt['instagram_no_post_id']);
 		$data = $parts[4];
@@ -84,7 +84,6 @@ function BBCode_Instagram_Validate(&$tag, &$data, &$disabled)
 		$height = $modSettings['instagram_default_height'];
 	$tag['content'] = '<div style="' . (empty($width) ? '' : 'max-width: ' . $width . 'px;') . (empty($height) ? '' : 'max-height: ' . $height . 'px;') . '"><div class="instagram-wrapper">' .
 		'<iframe src="https://instagram.com/p/' . $data .'/embed/" scrolling="no" frameborder="' . $frameborder . '"></iframe></div></div>';
-	//echo $tag['content']; exit;
 }
 
 function BBCode_Instagram_LoadTheme()

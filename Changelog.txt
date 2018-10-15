@@ -1,3 +1,6 @@
+v1.17 - January 4th, 2016
+o Fixed bbcode validation code so that more Instagram post IDs are properly recognized.
+
 v1.16 - January 1st, 2016
 o Added Spanish (ES) language translation to the mod.  Thanks, [url=http://www.simplemachines.org/community/index.php?action=profile;u=422971]d3vcho[/url]!
 o Fixed issue where "/?taken-by={username}" at end of URL was not properly auto-embedded.
